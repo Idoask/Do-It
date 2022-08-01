@@ -1,7 +1,6 @@
 import React, {useMemo} from 'react';
 import {useRouter} from "next/router";
 import { TasksPage } from "./components/TasksPage";
-import { tasks } from './mocks/taskmock';
 import { Button, Dialog, styled } from "@mui/material";
 
 const StyledTaskDialog = styled(Dialog)`
@@ -16,7 +15,7 @@ const Task = (props) => {
   const idParam = query.id;
 
   const relevantTask = useMemo(() => {
-    return tasks.filter(({id}) => {
+    return props.tasks.filter(({id}) => {
       return id === idParam;
     })[0];
   }, [idParam]);

@@ -127,7 +127,7 @@ export const Tasks: FC<TasksProps> = (props) => {
       marginTop={10}
       style={{ backgroundColor: "rgba(0,0,0,0.1)", height: "75vh" }}
     >
-      <Droppable droppableId="todo" index={0}>
+      <Droppable droppableId="todo" >
         {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => {
           return (
             <Grid
@@ -153,7 +153,7 @@ export const Tasks: FC<TasksProps> = (props) => {
         }}
       </Droppable>
 
-      <Droppable droppableId="in-progress" index={1}>
+      <Droppable droppableId="in-progress"  >
         {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
           <Grid
             item
@@ -170,7 +170,7 @@ export const Tasks: FC<TasksProps> = (props) => {
         )}
       </Droppable>
 
-      <Droppable droppableId="done" index={2}>
+      <Droppable droppableId="done" >
         {(provided: DroppableProvided, snapshot: DroppableStateSnapshot) => (
           <Grid
             item

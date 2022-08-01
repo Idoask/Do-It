@@ -157,7 +157,7 @@ export const TasksPage: NextPage = () => {
 
         // const draggedCardId = draggableId.split("-")[1];
         // const newIndexOfCard = destination.index;
-        let tasksCopy = [];
+        let tasksCopy:any[] = [];
         fetch("http://localhost:3000/api/tasks")
           .then((response) => response.json())
           .then((res) => {

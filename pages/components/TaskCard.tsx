@@ -141,7 +141,7 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
   const [comment, setComment] = useState<{name:string,comment:string,view:boolean}|null>(null);
 
   const addComment = () => {
-    if (comment !== null) {
+    if (comment !== null&&comments !== undefined) {
       
       setComments([...comments, comment]);
       fetch(`http://localhost:3000/api/editTask/${props.task.id}`, {
