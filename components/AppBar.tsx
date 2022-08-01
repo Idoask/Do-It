@@ -67,7 +67,7 @@ interface AppBarProps {
   allTasks: Task[];
 }
 
-export const MyAppBar: FC<AppBarProps> = ({
+const MyAppBar: FC<AppBarProps> = ({
   setSearch,
   setUser,
   user,
@@ -172,7 +172,6 @@ export const MyAppBar: FC<AppBarProps> = ({
     }
     return r;
   });
-  console.log({ toRender });
 
   const isMenuOpen = Boolean(anchorEl);
   const isNotifyOpen = Boolean(anchorNotify);
@@ -403,7 +402,7 @@ export const MyAppBar: FC<AppBarProps> = ({
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              {user === null ? (
+              {(user === null||user === undefined) ? (
                 <AccountCircle />
               ) : (
                 <Avatar sx={{ bgcolor: deepPurple[500] }}>
@@ -432,3 +431,4 @@ export const MyAppBar: FC<AppBarProps> = ({
     </Box>
   );
 };
+export default MyAppBar;

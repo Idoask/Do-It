@@ -26,10 +26,12 @@ interface MyLinearProgressProps {
   value: number;
 }
 
-export const LinearWithValueLabel: FC<MyLinearProgressProps> = ({ value }) => {
+ const LinearWithValueLabel: FC<MyLinearProgressProps> = ({ value }) => {
   return (
     <Box sx={{ width: "100%" }}>
       <LinearProgressWithLabel value={value} />
     </Box>
   );
 };
+
+export default LinearWithValueLabel;

@@ -14,7 +14,7 @@ interface CheckListProps {
   setChecked: (numbers: number[]) => void;
 }
 
-export const CheckList: React.FC<CheckListProps> = ({
+const CheckList: React.FC<CheckListProps> = ({
   subTasks,
   checked,
   setChecked,
@@ -34,7 +34,7 @@ export const CheckList: React.FC<CheckListProps> = ({
 
   return (
     <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
-      {subTasks.map((value, index) => {
+      {subTasks&&subTasks.map((value, index) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
@@ -69,3 +69,5 @@ export const CheckList: React.FC<CheckListProps> = ({
     </List>
   );
 };
+
+export default CheckList;

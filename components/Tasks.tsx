@@ -15,7 +15,7 @@ import {
   DroppableProvided,
   DroppableStateSnapshot
 } from "react-beautiful-dnd";
-import { TaskCard } from "./TaskCard";
+import TaskCard  from "./TaskCard";
 
 // status 1 - todo
 // status 2 - in progress
@@ -111,7 +111,7 @@ interface TasksProps {
   user:any;
 }
 
-export const Tasks: FC<TasksProps> = (props) => {
+const Tasks: FC<TasksProps> = (props) => {
   const [winReady, setwinReady] = React.useState(false);
 
   React.useEffect(() => {
@@ -189,3 +189,5 @@ export const Tasks: FC<TasksProps> = (props) => {
     </Grid>
   ) : null;
 };
+
+export default Tasks;

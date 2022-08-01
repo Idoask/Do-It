@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { TasksPage } from "./components/TasksPage";
+import TasksPage  from "../components/TasksPage";
 
 const statusMapper: Record<string, number> = {
   todo: 1,

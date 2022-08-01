@@ -31,8 +31,8 @@ import { styled } from "@mui/material/styles";
 import Typography from "@mui/material/Typography";
 import React, { FC, useEffect, useState } from "react";
 import { Draggable } from "react-beautiful-dnd";
-import { CheckList } from "./CheckList";
-import { LinearWithValueLabel } from "./LinearProgressWithLabel";
+import CheckList  from "./CheckList";
+import  LinearWithValueLabel from "./LinearProgressWithLabel";
 import { Task } from "./Tasks";
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -110,18 +110,18 @@ interface TaskCardProps {
   //   moveCard:(task:Task,newStatus:number)=>void
 }
 
-export const TaskCard: FC<TaskCardProps> = (props) => {
+const TaskCard: FC<TaskCardProps> = (props) => {
   const [shareDialogOpen, setShareDialogOpen] = useState(false);
   const [shareUrl, setShareUrl] = useState("");
   const [expanded, setExpanded] = React.useState(false);
   const [checked, setChecked] = React.useState([0]);
   const [files, setFiles] = useState<{ name: string; url: string }[]>(
-    props.task.files || []
+    props.task&&props.task.files?props.task.files : []
   );
-  const [comments, setComments] = useState<{name:string,comment:string,view:boolean}[]|undefined>(props.task.comments);
+  const [comments, setComments] = useState<{name:string,comment:string,view:boolean}[]|undefined>(props.task&&props.task.comments?props.task.comments:undefined);
   const [newComments, setNewComments] = useState<any>([]);
   const progress =
-    props.task.subTasks !== undefined
+  props.task&&props.task.subTasks !== undefined
       ? (checked.length / props.task.subTasks.length) * 100
       : 100;
 
@@ -153,7 +153,7 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
         body: JSON.stringify({...props.task,comments:[...comments, comment]}),
       });
       const newTasks = props.allTasks.map(t=>{
-        if(t.id===props.task.id){
+        if(props.task&&t.id===props.task.id){
           return{...props.task,comments:[...comments, comment]}
         }
         return t
@@ -196,8 +196,8 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
 
   return (
     <Draggable
-      draggableId={`card-${props.task.id}`}
-      index={Number(props.task.id)}
+      draggableId={`card-${props.task?props.task.id:'id'}`}
+      index={Number(props.task?props.task.id:'id')}
     >
       {(provided, snapshot) => {
         const style = {
@@ -219,7 +219,7 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
               <CardHeader
                 avatar={
                   <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                    {props.task.user === undefined
+                    {props.task&&props.task.user === undefined
                       ? "N"
                       : props.task.user.split(" ")[0][0] +
                         props.task.user.split(" ")[1][0]}
@@ -227,7 +227,7 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
                 }
                 action={
                   <>
-                    {props.user !== null&&props.user.name===props.task.user && (
+                    {props.task&&props.user !== null&&props.user.name===props.task.user && (
                       <IconButton onClick={openMenu} aria-label="settings">
                         <MoreVertIcon />
                       </IconButton>
@@ -487,3 +487,5 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
     </Draggable>
   );
 };
+
+export default TaskCard;

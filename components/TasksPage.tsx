@@ -12,9 +12,9 @@ import type { NextPage } from "next";
 import { useCallback, useEffect, useState } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import { v4 as uuid } from "uuid";
-import styles from "../../styles/Home.module.css";
-import { MyAppBar } from "./AppBar";
-import { Task, Tasks } from "./Tasks";
+import styles from "../styles/Home.module.css";
+import MyAppBar from "./AppBar";
+import  Tasks,{Task} from "./Tasks";
 
 const statusMapper: Record<string, number> = {
   todo: 1,
@@ -22,7 +22,7 @@ const statusMapper: Record<string, number> = {
   done: 3,
 };
 
-export const TasksPage: NextPage = () => {
+const TasksPage: NextPage = () => {
   const [user, setUser] = useState<any>(null);
   const [open, setOpen] = useState<boolean>(false);
   const [openEditDialog, setOpenEditDialog] = useState<boolean>(false);
@@ -351,3 +351,4 @@ export const TasksPage: NextPage = () => {
     </DragDropContext>
   );
 };
+ export default TasksPage;
