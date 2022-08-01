@@ -211,7 +211,7 @@ const MyAppBar: FC<AppBarProps> = ({
           return { ...t, view: true };
         });
         
-        fetch(`${process.env.siteUrl}/api/editTask/${task.id}`, {
+        fetch(`/api/editTask/${task.id}`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

@@ -37,7 +37,7 @@ const TasksPage: NextPage = () => {
   const [subTaskToAdd, setSubTaskToAdd] = useState<string>("");
 
   useEffect(() => {
-    fetch(`${process.env.siteUrl}/api/tasks`)
+    fetch(`/api/tasks`)
       .then((response) => response.json())
       .then((res) => setTasksState(res.data));
   }, []);
@@ -62,7 +62,7 @@ const TasksPage: NextPage = () => {
     };
 
     setTasksState([...tasksState, newTask]);
-    fetch(`${process.env.siteUrl}/api/tasks`, {
+    fetch(`/api/tasks`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ const TasksPage: NextPage = () => {
         return task;
       });
 
-      fetch(`${process.env.siteUrl}/api/editTask/${id}`, {
+      fetch(`/api/editTask/${id}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ const TasksPage: NextPage = () => {
         const change = !users?.includes(user.name)
           ? [...(task.usersLike || []), { name: user.name, view: false }]
           : task.usersLike?.filter((like) => like.name !== user.name);
-        fetch(`${process.env.siteUrl}/api/editTask/${id}`, {
+        fetch(`/api/editTask/${id}`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -139,7 +139,7 @@ const TasksPage: NextPage = () => {
   };
 
   const removeTask = (id: string) => {
-    fetch(`${process.env.siteUrl}/api/removeTask/${id}`, {
+    fetch(`/api/removeTask/${id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -158,7 +158,7 @@ const TasksPage: NextPage = () => {
         // const draggedCardId = draggableId.split("-")[1];
         // const newIndexOfCard = destination.index;
         let tasksCopy:any[] = [];
-        fetch(`${process.env.siteUrl}/api/tasks`)
+        fetch(`/api/tasks`)
           .then((response) => response.json())
           .then((res) => {
             tasksCopy = res.data;
@@ -177,7 +177,7 @@ const TasksPage: NextPage = () => {
               return task;
             });
             setTasksState(newTasks as Task[]);
-            fetch(`${process.env.siteUrl}/api/editTask/${taskId}`, {
+            fetch(`/api/editTask/${taskId}`, {
               headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
