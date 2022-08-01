@@ -37,7 +37,7 @@ export const TasksPage: NextPage = () => {
   const [subTaskToAdd, setSubTaskToAdd] = useState<string>("");
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/tasks")
+    fetch("${process.env.siteUrl}/api/tasks")
       .then((response) => response.json())
       .then((res) => setTasksState(res.data));
   }, []);
@@ -62,7 +62,7 @@ export const TasksPage: NextPage = () => {
     };
 
     setTasksState([...tasksState, newTask]);
-    fetch("http://localhost:3000/api/tasks", {
+    fetch("${process.env.siteUrl}/api/tasks", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -103,7 +103,7 @@ export const TasksPage: NextPage = () => {
         return task;
       });
 
-      fetch(`http://localhost:3000/api/editTask/${id}`, {
+      fetch(`${process.env.siteUrl}/api/editTask/${id}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ export const TasksPage: NextPage = () => {
         const change = !users?.includes(user.name)
           ? [...(task.usersLike || []), { name: user.name, view: false }]
           : task.usersLike?.filter((like) => like.name !== user.name);
-        fetch(`http://localhost:3000/api/editTask/${id}`, {
+        fetch(`${process.env.siteUrl}/api/editTask/${id}`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
@@ -139,7 +139,7 @@ export const TasksPage: NextPage = () => {
   };
 
   const removeTask = (id: string) => {
-    fetch(`http://localhost:3000/api/removeTask/${id}`, {
+    fetch(`${process.env.siteUrl}/api/removeTask/${id}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -158,7 +158,7 @@ export const TasksPage: NextPage = () => {
         // const draggedCardId = draggableId.split("-")[1];
         // const newIndexOfCard = destination.index;
         let tasksCopy:any[] = [];
-        fetch("http://localhost:3000/api/tasks")
+        fetch("${process.env.siteUrl}/api/tasks")
           .then((response) => response.json())
           .then((res) => {
             tasksCopy = res.data;
@@ -177,7 +177,7 @@ export const TasksPage: NextPage = () => {
               return task;
             });
             setTasksState(newTasks as Task[]);
-            fetch(`http://localhost:3000/api/editTask/${taskId}`, {
+            fetch(`${process.env.siteUrl}/api/editTask/${taskId}`, {
               headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",

@@ -65,7 +65,7 @@ const upload = async (
     files: [...fileUrls, { name: name, url: data.secure_url }],
   };
 
-  fetch(`http://localhost:3000/api/editTask/${id}`, {
+  fetch(`${process.env.siteUrl}/api/editTask/${id}`, {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
@@ -144,7 +144,7 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
     if (comment !== null&&comments !== undefined) {
       
       setComments([...comments, comment]);
-      fetch(`http://localhost:3000/api/editTask/${props.task.id}`, {
+      fetch(`${process.env.siteUrl}/api/editTask/${props.task.id}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -340,9 +340,9 @@ export const TaskCard: FC<TaskCardProps> = (props) => {
                     <IconButton
                       aria-label="share"
                       onClick={() => {
-                        navigator.share({title:props.task.name,text:props.task.description,url:`http://localhost:3000/${props.task.id}`})     
+                        navigator.share({title:props.task.name,text:props.task.description,url:`${process.env.siteUrl}/${props.task.id}`})     
                         // setShareDialogOpen(true);
-                        // setShareUrl(`http://localhost:3000/${props.task.id}`);
+                        // setShareUrl(`${process.env.siteUrl}/${props.task.id}`);
                       }}
                     >
                       <ShareIcon />

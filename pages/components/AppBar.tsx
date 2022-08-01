@@ -211,7 +211,7 @@ export const MyAppBar: FC<AppBarProps> = ({
         const usersCommentNew = task.comments?.map((t) => {
           return { ...t, view: true };
         });
-        fetch(`http://localhost:3000/api/editTask/${task.id}`, {
+        fetch(`${process.env.siteUrl}/api/editTask/${task.id}`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
