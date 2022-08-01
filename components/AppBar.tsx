@@ -172,7 +172,7 @@ const MyAppBar: FC<AppBarProps> = ({
     }
     return r;
   });
-
+  
   const isMenuOpen = Boolean(anchorEl);
   const isNotifyOpen = Boolean(anchorNotify);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -210,6 +210,7 @@ const MyAppBar: FC<AppBarProps> = ({
         const usersCommentNew = task.comments?.map((t) => {
           return { ...t, view: true };
         });
+        
         fetch(`${process.env.siteUrl}/api/editTask/${task.id}`, {
           headers: {
             Accept: "application/json",

@@ -37,7 +37,7 @@ const TasksPage: NextPage = () => {
   const [subTaskToAdd, setSubTaskToAdd] = useState<string>("");
 
   useEffect(() => {
-    fetch("${process.env.siteUrl}/api/tasks")
+    fetch(`${process.env.siteUrl}/api/tasks`)
       .then((response) => response.json())
       .then((res) => setTasksState(res.data));
   }, []);
@@ -62,7 +62,7 @@ const TasksPage: NextPage = () => {
     };
 
     setTasksState([...tasksState, newTask]);
-    fetch("${process.env.siteUrl}/api/tasks", {
+    fetch(`${process.env.siteUrl}/api/tasks`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -158,7 +158,7 @@ const TasksPage: NextPage = () => {
         // const draggedCardId = draggableId.split("-")[1];
         // const newIndexOfCard = destination.index;
         let tasksCopy:any[] = [];
-        fetch("${process.env.siteUrl}/api/tasks")
+        fetch(`${process.env.siteUrl}/api/tasks`)
           .then((response) => response.json())
           .then((res) => {
             tasksCopy = res.data;
